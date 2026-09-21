@@ -1,0 +1,122 @@
+ARCHIVE: NDXm_ORB_PropFirm_V3_MTF_CLEAN — Proyecto Irrecuperable
+Fecha: 2026-09-21
+Estado: 4+ intentos fallidos con error sistémico
+SQX Version: Build 144.2938
+
+CONTENIDO DEL ARCHIVE:
+======================
+
+project.cfx (376 KB)
+  - Custom Project StrategyQuant X
+  - Contiene: Build-Task1, Retest-Task1-7, config.xml
+  - Random Group: Levels_ORB_NDXm (UUID: dd525f52-5e06-443f-aa9e-6b7295d29c6c)
+  - Status: 0 estrategias generadas (BUILD FAILED)
+
+DOCUMENTACIÓN DE DIAGNÓSTICO:
+=============================
+
+36_PLAN_DIAGNOSTICO_Y_RECUPERACION_V5_2026_09_21.md
+  - Plan inicial FASE A-B-C para investigar V5
+
+37_DIAGNOSTICO_FASE_A1_V5_vs_V2_2026_09_21.md
+  - Análisis comparativo: V5_LONG signals[1-3] vacíos vs V2 completo
+  - Raíz del problema inicial identificada
+
+38_CIERRE_SESION_2026_09_21_DIAGNOSTICO_V5.md
+  - Resumen sesión anterior + V3_MTF_CLEAN creado como clon de V2
+
+39_FASE_1_BUILD_OOS_VALIDATION_2026_09_21.md
+  - Plan de ejecución: Build + OOS checkpoint
+
+40_VALIDACION_MTF_BUILD_vs_RETEST_2026_09_21.md
+  - Verificación previa: configuración MTF (M15 + D1)
+
+41_ERROR_DIAGNOSIS_NO_PRICE_BLOCK_2026_09_21.md
+  - Primer error: "There is no Price block defined!"
+  - Análisis de 3 opciones de solución
+
+42_PLAN_GENERACION_DESDE_CERO_2026_09_21.md
+  - Intento de generar proyecto nuevo con skills sqx-*
+
+43_FIX_RAPIDO_AGREGAR_PRICE_BLOCK_2026_09_21.md
+  - Plan: agregar Random Group manualmente en AlgoWizard UI
+
+44_EJECUCION_EN_VIVO_FIX_PRICE_BLOCK_2026_09_21.md
+  - Instrucciones paso a paso para UI manual
+
+45_MONITOREO_VIVO_BUILD_OOS_2026_09_21.md
+  - Documento en vivo durante Build execution
+
+46_DIAGNOSTICO_PRICE_BLOCK_EMBEDDED_2026_09_21.md
+  - Análisis: grupo SÍ existe en XML pero no se embebió correctamente
+
+47_REINTENTO_BUILD_2026_09_21.md
+  - Intento 3: Build nuevamente (sin cambios)
+
+48_CIERRE_DIAGNOSTICO_FINAL_V3_2026_09_21.md
+  - Análisis final: V3 IRRECUPERABLE en esta instancia
+
+ERROR PERSISTENTE (TODAS LAS SESIONES):
+=======================================
+
+com.strategyquant.tradinglib.generator.GenerateException: There is no Price block defined!
+	at com.strategyquant.tradinglib.blocks.random.ReplacementConfig.chooseSpecialRandomly(Unknown Source)
+	at com.strategyquant.tradinglib.blocks.random.ReplacementConfig.generateSpecialBlock(Unknown Source)
+	at com.strategyquant.tradinglib.blocks.random.ReplacementParameter.addFormulaPriceParam(Unknown Source)
+	...
+
+TIMELINE:
+=========
+- 2026-09-02: Intento 1 (Build ~40s, falla)
+- 2026-09-06: Intento 2 (resultado similar)
+- 2026-09-09: Intento 3 (parada manual)
+- 2026-09-11: V8 ORB menciona 541/1800 (pero no se encontró)
+- 2026-09-16: V2_MTF_ROBUSTEZ generado, V3_MTF_CLEAN clonado
+- 2026-09-21: Intento 4 y 5 (mismo error 35-64s)
+
+CAUSA RAÍZ (NO CONFIRMADA):
+===========================
+
+Lo que SÍ se verificó:
+✓ Random Group Levels_ORB_NDXm EXISTE en Build-Task1.xml (4 items)
+✓ UUID correcto en referencia (línea 22420)
+✓ Datos de mercado cargan ("All backtest data prepared")
+✓ Grupo NO está corrupto en archivo
+
+Lo que FALLA en runtime:
+✗ Motor no RECONOCE el grupo cuando intenta elegir item
+✗ ReplacementConfig.chooseSpecialRandomly() lanza excepción
+
+Hipótesis:
+A) Caché de SQX/JDK corrupta
+B) Incompatibilidad Motor/Template
+C) Parámetros del grupo no computable en timeframe
+D) Bug en Build 144.2938
+
+INTENTOS FALLIDOS:
+==================
+
+Intento | Acción | Resultado | Duración
+--------|--------|-----------|----------
+1       | Clonar V2→V3, Build | Error | 40s
+2       | Agregar grupo UI | Error | 64s
+3       | Reintento simple | Error | 35s
+
+SOLUCIÓN RECOMENDADA:
+====================
+
+1. Diagnóstico en máquina/instancia diferente
+2. Comparar instalación SQX actual vs fresh install
+3. Verificar: JDK version, configuración memoria, caché del motor
+4. Si persiste: cambiar estrategia/template base (no ORB)
+
+USUARIO & CONTEXTO:
+===================
+Usuario: Leon (leon64721@gmail.com)
+Proyecto: StrategyQuant X - Prop Firm Trading Algorítmico
+Scope: Multi-temporal ORB (M15 main + D1 filter) con prop firm compliance
+Status: 4 sesiones dedicadas, irrecuperable en Build 144.2938
+
+---
+Archive creado: 2026-09-21 16:50 UTC
+Próximo paso: Cargar en GitHub para portabilidad
