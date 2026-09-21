@@ -1,0 +1,114 @@
+======================================================
+GUIA RAPIDA: como usar Aider (Claude / Gemini / Ollama)
+======================================================
+(Para recordar mientras te acostumbras. Ábrelo con el Bloc de notas.)
+
+
+PASO 1 - ABRIR UNA TERMINAL
+----------------------------
+Menu Inicio -> escribe "PowerShell" o "cmd" -> Enter.
+
+
+PASO 2 - ENTRAR A LA CARPETA DEL PROYECTO (SIEMPRE, antes de escribir "aider")
+-------------------------------------------------------------------------------
+Nunca corras "aider" suelto, sin moverte de carpeta. Ejemplo para tus
+snippets de SQX:
+
+    cd C:\SQX_144_Full\user\extend\Snippets
+
+(Puedes usar cualquier subcarpeta dentro de C:\SQX_144_Full\user\extend,
+ahi ya quedo todo configurado.)
+
+
+PASO 3 - LANZAR AIDER
+----------------------
+Ya parado en la carpeta correcta, simplemente escribe:
+
+    aider
+
+Si es la primera vez en esa carpeta, te va a preguntar:
+  "No git repo found, create one...? (Y)es/(N)o"
+Responde escribiendo  y  y Enter (eso activa el control de versiones,
+para poder deshacer cambios si algo sale mal). NO uses Ctrl+C ahi, solo
+responde y o n.
+
+
+PASO 4 - ELEGIR QUE MODELO USAR
+---------------------------------
+Tienes dos formas:
+
+  A) Al lanzarlo, agregando --model y el nombre corto:
+
+       aider --model opus
+       aider --model sonnet
+       aider --model gemini
+       aider --model code
+       aider --model gemma
+       aider --model gemma-big
+
+  B) Ya adentro de Aider (donde ves el simbolo  >  esperando), escribes
+     /model y el nombre corto, sin salir de la conversacion:
+
+       > /model opus
+       > /model code
+
+TABLA DE MODELOS DISPONIBLES:
+
+  Nombre corto    A donde apunta                  Costo
+  ------------    -------------------------------  --------------
+  opus            claude-opus-5 (el mas potente)    de pago
+  sonnet          claude-sonnet-5 (equilibrado)      de pago
+  gemini          gemini/gemini-2.5-pro             de pago
+  code            codegemma:7b (Ollama, local)      GRATIS
+  gemma           gemma4:12b (Ollama, local)        GRATIS
+  gemma-big       gemma4:latest (Ollama, local)     GRATIS
+
+Para los "GRATIS" necesitas tener la app de Ollama abierta en tu PC
+(icono en la bandeja del sistema, abajo a la derecha). Para los "de pago"
+necesitas tus claves configuradas (ya quedaron guardadas permanentemente,
+no hay que volver a ponerlas).
+
+
+PASO 5 - COMANDOS UTILES DENTRO DE AIDER
+-------------------------------------------
+  /model <nombre>     -> cambiar de modelo (ver tabla arriba)
+  /add archivo.java   -> agregar un archivo para que Aider lo pueda editar
+  /read-only archivo  -> agregar un archivo solo para que lo lea (no editar)
+  /undo                -> deshacer el ultimo cambio que hizo el modelo
+  /diff                 -> ver que cambio en el ultimo edit
+  /exit  (o Ctrl+C)    -> salir de Aider
+
+
+PASO 6 - QUE YA QUEDA CONFIGURADO SOLO (no hacer nada)
+---------------------------------------------------------
+- Cada vez que uses Aider dentro de C:\SQX_144_Full o de
+  C:\SQX_144_Full\user\extend (y sus subcarpetas), automaticamente se
+  carga el archivo de notas del proyecto:
+      C:\SQX_144_Full\user\ClaudeCode_SQX_Notes.md
+  Eso pasa sin importar que modelo elijas (Claude, Gemini u Ollama) -
+  todos "arrancan" sabiendo lo mismo que ya investigamos del proyecto.
+- El alias "sonnet" ya esta corregido para usar el modelo actual
+  (claude-sonnet-5), no uno viejo.
+
+
+REGLAS DE ORO (para no repetir errores ya cometidos)
+-------------------------------------------------------
+1. SIEMPRE cd a la carpeta del proyecto antes de escribir "aider".
+   NUNCA lo corras en C:\Windows\System32 ni en ninguna carpeta del
+   sistema operativo.
+2. Si escribes solo "aider" (sin --model), abre una terminal nueva
+   primero si acabas de instalar/configurar algo - los cambios
+   permanentes (como el PATH o las claves) solo se ven en terminales
+   NUEVAS, no en las que ya estaban abiertas.
+3. Nunca pegues tus claves (API keys) dentro de esta conversacion de
+   Claude Code - siempre configuralas en una terminal aparte.
+
+
+SI ALGO FALLA
+---------------
+- "aider no se reconoce como un comando" -> abre una terminal NUEVA
+  (la que tenias abierta no vio el cambio de PATH).
+- El modelo de pago no responde / da error de clave -> revisa que
+  configuraste ANTHROPIC_API_KEY o GEMINI_API_KEY (ver Paso 4).
+- El modelo gratis (Ollama) no responde -> revisa que la app de
+  Ollama este abierta.
