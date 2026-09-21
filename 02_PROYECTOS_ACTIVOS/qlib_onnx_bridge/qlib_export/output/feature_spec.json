@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "model_kind": "lightgbm",
+  "trained_at": "2026-08-15T04:35:03.840686+00:00",
+  "train_window": {
+    "start": "2020-01-01",
+    "end": "2022-06-30"
+  },
+  "lookback_bars": 5,
+  "features": [
+    {
+      "name": "return_1",
+      "formula": "close[t] / close[t-1] - 1",
+      "lookback": 1,
+      "order_index": 0
+    },
+    {
+      "name": "return_5",
+      "formula": "close[t] / close[t-5] - 1",
+      "lookback": 5,
+      "order_index": 1
+    },
+    {
+      "name": "ma_5",
+      "formula": "mean(close[t-4:t+1])",
+      "lookback": 5,
+      "order_index": 2
+    },
+    {
+      "name": "std_5",
+      "formula": "std(close[t-4:t+1])",
+      "lookback": 5,
+      "order_index": 3
+    }
+  ],
+  "spec_hash": "306521abd1bc4b78"
+}

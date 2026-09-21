@@ -1,0 +1,26 @@
+<Project name="NDXM_TMILL_E1_H1TF_V4" version="142.2336">
+  <Tasks>
+    <Task type="Build" name="CP_BUILD" showSettingsOverview="false" sampleName="CP_BUILD" active="true" taskXMLFile="Build-Task1.xml" />
+    <Task type="Retest" name="CP_OOS" showSettingsOverview="false" sampleName="CP_OOS" active="true" taskXMLFile="Retest-Task1.xml" title="OOS" />
+    <Task type="Retest" name="CP_GM_OFF" showSettingsOverview="false" sampleName="CP_GM_OFF" active="false" taskXMLFile="Retest-Task6.xml" title="GESTION MONETARIA - DESACTIVADA" />
+    <Task type="Retest" name="CP_MC_TRADES" showSettingsOverview="false" sampleName="CP_MC_TRADES" active="true" taskXMLFile="Retest-Task2.xml" title="MC_TRADES" />
+    <Task type="Retest" name="CP_MC_SPREAD_SLIPPAGE" showSettingsOverview="false" sampleName="CP_MC_SPREAD_SLIPPAGE" active="true" taskXMLFile="Retest-Task3.xml" title="MC_SPREAD_SLIPPAGE" />
+    <Task type="Retest" name="CP_TICK" showSettingsOverview="false" sampleName="CP_TICK" active="true" taskXMLFile="Retest-Task5.xml" title="TICK" />
+    <Task type="Retest" name="CP_SPP" showSettingsOverview="false" sampleName="CP_SPP" active="true" taskXMLFile="Retest-Task4.xml" title="SPP" />
+    <Task type="Retest" name="CP_WFA_MATRIX" showSettingsOverview="false" sampleName="CP_WFA_MATRIX" active="true" taskXMLFile="Retest-Task7.xml" title="WFA MATRIX" />
+  </Tasks>
+  <Databanks>
+    <Databank name="Results" view="edge ratio" syncType="Auto-sync never" position="0" />
+    <Databank name="Existing portfolio" view="Default - Main data" syncType="Auto-sync every 1 hour" position="1" />
+    <Databank name="Last generation" view="Default - Main data" syncType="Auto-sync never" position="2" />
+    <Databank name="Initial population" view="Default - Main data" syncType="Auto-sync every 1 hour" position="3" />
+    <Databank name="Strategies to improve" view="Default - Main data" syncType="Auto-sync every 1 hour" position="4" />
+    <Databank name="OOS" view="edge ratio" syncType="Auto-sync every 1 hour" position="600" />
+    <Databank name="GESTION MONETARIA - DESACTIVADA" view="edge ratio" syncType="Auto-sync every 1 hour" position="700" />
+    <Databank name="MC_TRADES" view="edge ratio" syncType="Auto-sync every 1 hour" position="800" />
+    <Databank name="MC_SPREAD_SLIPPAGE" view="edge ratio" syncType="Auto-sync every 1 hour" position="900" />
+    <Databank name="TICK" view="edge ratio" syncType="Auto-sync every 1 hour" position="1000" />
+    <Databank name="SPP" view="WF MIO" syncType="Auto-sync every 1 hour" position="1100" />
+    <Databank name="WFA MATRIX" view="Default - WF" syncType="Auto-sync never" position="1200" />
+  </Databanks>
+</Project>

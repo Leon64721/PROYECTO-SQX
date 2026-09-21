@@ -1,0 +1,3 @@
+Tambien les subo un analizador a profundidad de WFM , estyo para que ? Porque el SQX no nos dá un informe a profundidad de la realidad de lo que encontró en el WFM , hay veces dejamos pasar estrategias buenas por un score o tambien dejamos pasar sobreoptimizadas por un score.  Se le sube la estrategia en formato *.sqx despues de la optimización y el le hace una revisión completa
+Attachment file type: archive
+SQX_WFM_DEEP_ANALYZER_V1.zip

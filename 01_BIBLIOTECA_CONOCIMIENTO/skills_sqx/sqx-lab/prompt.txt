@@ -1,0 +1,794 @@
+ACTÚA COMO MI INGENIERO CUANTITATIVO PRINCIPAL Y ARQUITECTO DE STRATEGYQUANT X
+
+OBJETIVO
+Convertir la estrategia descrita aquí en una cadena reproducible de authoring:
+
+Custom Blocks → Random Groups → Strategy Templates → Strategy Project
+
+Utiliza las skills reales del plugin sqx-lab:
+- sqx-custom-block
+- sqx-random-group
+- sqx-strategy-template
+- sqx-strategy-project
+
+No quiero únicamente una explicación. Quiero que, cuando el entorno lo permita,
+generes los artefactos reales, ejecutes sus validadores y documentes cómo
+importarlos, construirlos y comprobarlos en mi instalación.
+
+Trabaja como investigador: no presupongas que existe una ventaja estadística.
+Una estrategia puede estar correctamente implementada y no ser rentable.
+
+════════════════════════════════════════════════════════════
+A. CONTRATO DE EJECUCIÓN Y HONESTIDAD TÉCNICA
+════════════════════════════════════════════════════════════
+
+1. Antes de generar archivos, lee las instrucciones locales de las cuatro skills,
+   sus referencias, ejemplos, esquemas y scripts disponibles.
+
+2. Usa el mecanismo real de activación de skills de este entorno.
+   Identifica explícitamente qué skill utiliza cada fase.
+   No inventes comandos como /sqx-custom-block si no están registrados.
+
+3. Deriva indicadores, identificadores, tipos, parámetros, formatos y restricciones
+   de mi instalación y de los catálogos del toolkit.
+
+4. No escribas XML de SQX desde cero basándote en recuerdos.
+   Usa los generadores, gramáticas y mecanismos documentados de las skills.
+   Para plantillas y proyectos utiliza esqueletos o donantes compatibles cuando
+   así lo requiera el toolkit.
+
+5. No inventes:
+   - rutas locales;
+   - claves internas;
+   - nombres de scripts;
+   - extensiones o estructuras de archivos;
+   - menús de importación;
+   - capacidades de automatización;
+   - resultados de validación, Build, backtest o robustez.
+
+6. Distingue siempre estos estados:
+   - ESPECIFICADO;
+   - GENERADO;
+   - VALIDADO POR TOOLKIT;
+   - IMPORTADO EN SQX;
+   - BUILD CONFIRMADO;
+   - BACKTEST EJECUTADO;
+   - ROBUSTEZ EVALUADA;
+   - BLOQUEADO;
+   - PENDIENTE DE VERIFICACIÓN MANUAL.
+
+   Un estado no implica automáticamente el siguiente.
+
+7. Presenta una especificación breve antes de cada fase y continúa sin pedir
+   confirmación cuando la acción sea reversible y no cambie la tesis.
+
+8. Si falta información imprescindible, agrupa los bloqueos en una única
+   solicitud al inicio. Antes de preguntar, inspecciona lo disponible.
+   Si aparece después un bloqueo nuevo, detén solamente la rama afectada y
+   documenta lo necesario para reanudarla.
+
+9. No sobrescribas proyectos, grupos, bloques ni configuraciones existentes.
+   Trabaja en un directorio nuevo y usa identificadores con prefijo propio.
+   Antes de modificar recursos de SQX, crea respaldo y explica cómo restaurarlo.
+
+10. No instales dependencias ni ejecutes scripts descargados sin inspeccionarlos
+    y sin las autorizaciones exigidas por el entorno.
+
+11. No coloques operaciones reales ni conectes este proceso a una cuenta live.
+    El alcance es authoring, construcción, backtesting e investigación.
+
+12. No ejecutes búsquedas masivas sin presupuesto de tiempo y recursos.
+    Sí puedes preparar el proyecto y ejecutar comprobaciones pequeñas permitidas.
+
+════════════════════════════════════════════════════════════
+B. CONFIGURACIÓN DEL PROYECTO
+════════════════════════════════════════════════════════════
+
+Nombre lógico:
+EURUSD_H1_D1_TrendVolBreakout
+
+Prefijo de artefactos:
+TVB_
+
+Instalación SQX:
+Detectar desde la configuración del toolkit; no asumir una ruta.
+
+Versión y build SQX:
+Detectar y registrar.
+
+Mercado:
+EURUSD del proveedor local seleccionado.
+
+Timeframe principal:
+H1.
+
+Timeframe secundario:
+D1 del mismo instrumento y con construcción temporal compatible.
+
+Motor/plataforma de destino:
+Detectar opciones disponibles y declarar la utilizada.
+No confundir compatibilidad con SQX con compatibilidad del código exportado.
+
+Moneda y capital de simulación:
+Propuesta inicial: USD 10 000, únicamente para investigación.
+No cambiar silenciosamente la moneda de una configuración existente.
+
+Riesgo por operación:
+Propuesta inicial: 0.25% del equity, calculado con el stop inicial.
+No es una recomendación personalizada de exposición.
+
+Posiciones:
+Una posición simultánea para esta estrategia.
+Sin piramidación, martingala, promediado de pérdidas ni cobertura long/short.
+
+Datos, spread, comisión, swap y slippage:
+Utilizar información local documentada.
+Si faltan, marcar la evaluación económica como incompleta.
+Nunca asumir costes cero para declarar rentabilidad.
+
+Presupuesto de búsqueda masiva:
+No autorizado por defecto.
+Preparar una configuración acotada y documentar el coste previsto.
+
+════════════════════════════════════════════════════════════
+C. ESPECIFICACIÓN INEQUÍVOCA DE LA ESTRATEGIA
+════════════════════════════════════════════════════════════
+
+TESIS
+Investigar si las rupturas H1, alineadas con una tendencia diaria y acompañadas
+por expansión de volatilidad, producen resultados robustos después de costes.
+
+C.1. Convención temporal
+
+Evaluar entradas una sola vez al comenzar una nueva vela H1.
+La vela de señal es la última vela H1 completamente cerrada.
+
+En el pseudocódigo:
+- H1[[1]](#__1) = vela de señal cerrada.
+- H1[[2]](#__2) = vela cerrada inmediatamente anterior.
+- D1_closed = última vela diaria completamente cerrada y disponible
+  en el instante de decisión.
+
+Mapea estas convenciones a los shifts reales de SQX.
+No asumas que un índice textual tiene idéntica semántica en todos sus bloques.
+
+Nunca utilizar:
+- cierre de la H1 en formación;
+- cierre definitivo del D1 todavía en formación;
+- máximos o mínimos futuros;
+- información posterior a la ejecución simulada.
+
+Construir indicadores con historial de calentamiento suficiente.
+Verificar estabilidad de la EMA 200 D1 y disponibilidad del resto de series.
+
+C.2. Entrada long
+
+Todas las condiciones deben cumplirse mediante AND:
+
+1. Régimen:
+   Close(D1_closed) > EMA200(D1_closed).
+
+2. Expansión de volatilidad:
+   ATR14_H1[[1]](#__1) > promedio de los 20 valores ATR14_H1[1..20].
+
+   La media se calcula sobre la serie del ATR, no sobre precios.
+   Incluye el ATR de la vela de señal y los 19 valores anteriores.
+   Todos esos valores deben estar cerrados.
+
+3. Ruptura:
+   Close_H1[[1]](#__1) > máximo de High_H1[2..21].
+
+   Son 20 velas anteriores a la vela de señal.
+   Excluir expresamente la vela de señal del canal.
+
+4. No existe una posición abierta de esta estrategia.
+
+Ejecución:
+Orden de mercado en el primer precio negociable de la siguiente H1,
+según el motor, el spread y el modelo de ejecución disponibles.
+
+No sustituirla por una orden stop intrabar: sería otra estrategia.
+
+C.3. Entrada short
+
+Todas las condiciones deben cumplirse mediante AND:
+
+1. Close(D1_closed) < EMA200(D1_closed).
+2. ATR14_H1[[1]](#__1) > promedio de ATR14_H1[1..20].
+3. Close_H1[[1]](#__1) < mínimo de Low_H1[2..21].
+4. No existe una posición abierta de esta estrategia.
+
+IMPORTANTE:
+El filtro de expansión de volatilidad es idéntico en long y short.
+No invertir ATR > media a ATR < media.
+La simetría direccional no equivale a negar toda la expresión booleana.
+
+C.4. Igualdades y repetición
+
+- Usar comparaciones estrictas.
+- Una igualdad no produce señal.
+- No exigir un cruce adicional desde dentro del canal: esa condición no forma
+  parte de la estrategia base.
+- Tras una salida, una nueva entrada solo puede evaluarse en una decisión H1
+  posterior, respetando una posición simultánea.
+- No realizar cierre y reversión automáticos por señal contraria.
+
+C.5. Stop inicial y objetivo
+
+Guardar ATR_entry:
+Valor de ATR14 de la vela H1 de señal, conocido antes de ejecutar.
+
+Anclar niveles al precio real de ejecución:
+
+Long:
+- SL inicial = entrada menos 1.5 × ATR_entry.
+- TP inicial = entrada más 3.0 × ATR_entry.
+
+Short:
+- SL inicial = entrada más 1.5 × ATR_entry.
+- TP inicial = entrada menos 3.0 × ATR_entry.
+
+SL y TP iniciales no se recalculan cada vela.
+El trailing puede mejorar el stop, nunca ampliarlo.
+
+Normalizar precio, volumen y distancias a las restricciones del instrumento.
+Si el tamaño mínimo excede el riesgo permitido, omitir la operación.
+No aumentar volumen para forzar una entrada.
+
+C.6. Trailing stop: definición base explícita
+
+La idea original no especifica la distancia del trailing.
+Adopta como propuesta identificada esta implementación:
+
+- Activación: avance favorable del cierre H1 de al menos
+  1.5 × ATR_entry respecto de la entrada.
+- Comprobar activación únicamente al cierre de velas H1.
+- Una vez activado, permanece activado.
+- Distancia: 1.5 × ATR14 de la última H1 cerrada.
+- Referencia long: mayor cierre H1 observado desde la entrada.
+- Referencia short: menor cierre H1 observado desde la entrada.
+- Actualización: una vez por nueva H1, con información ya cerrada.
+
+Long:
+Nuevo stop = mayor entre stop anterior y
+             referencia long menos distancia trailing.
+
+Short:
+Nuevo stop = menor entre stop anterior y
+             referencia short más distancia trailing.
+
+La actualización solo tiene efecto desde ese momento hacia adelante.
+Nunca aplicar el stop nuevo retroactivamente dentro de la vela que lo calculó.
+
+SL y TP pueden ejecutarse intrabar aunque las señales y actualizaciones
+del trailing se calculen en H1.
+
+Si el trailing nativo usa otra referencia, actualización o activación:
+- describe exactamente la diferencia;
+- no lo declares equivalente;
+- implementa esta semántica si la instalación lo permite;
+- en caso contrario, entrega una alternativa claramente separada y
+  marca la estrategia base como parcialmente bloqueada.
+
+C.7. Tamaño de posición
+
+Calcular volumen a partir de:
+- equity disponible;
+- riesgo porcentual;
+- distancia del stop inicial;
+- valor monetario de esa distancia por lote;
+- conversión de divisas;
+- restricciones de volumen y margen.
+
+Registrar el método concreto usado por SQX.
+Advertir que gaps, slippage y costes pueden superar la pérdida prevista.
+
+════════════════════════════════════════════════════════════
+D. FASE 0 — PREPARACIÓN Y DIAGNÓSTICO
+════════════════════════════════════════════════════════════
+
+1. Comprueba que sqx-lab y las cuatro skills están disponibles.
+2. Si falta configuración, usa /sqx-setup cuando esté registrado.
+3. Ejecuta /sqx-doctor cuando esté disponible.
+4. Inspecciona:
+   - versión del plugin y de SQX;
+   - intérprete y dependencias requeridas;
+   - catálogos de cada skill;
+   - bloques custom instalados;
+   - grupos y referencias;
+   - esqueletos de plantillas;
+   - proyectos donantes;
+   - datos H1 y D1;
+   - medios reales para importar, construir y ejecutar pruebas.
+
+5. Identifica grupos rotos y bloques faltantes.
+   Usa Repair únicamente si está documentado, con respaldo y alcance explícito.
+
+6. Crea un mapa de compatibilidad:
+   requisito → componente local → evidencia → limitación.
+
+7. Guarda diagnóstico y configuración efectiva.
+   No avances con dependencias críticas rotas.
+
+════════════════════════════════════════════════════════════
+E. FASE 1 — SKILL sqx-custom-block
+════════════════════════════════════════════════════════════
+
+ENCARGO A LA SKILL
+“Construye los bloques atómicos de régimen, expansión de volatilidad y ruptura
+de esta especificación usando exclusivamente el catálogo local.
+Genera pares direccionales cuando corresponda y valida sus artefactos.”
+
+PROCEDIMIENTO
+
+1. Lee la documentación de sqx-custom-block y descubre sus comandos reales.
+
+2. Presenta la especificación de estos bloques lógicos:
+   - TVB_Regime_D1_Long.
+   - TVB_Regime_D1_Short.
+   - TVB_VolExpansion_H1.
+   - TVB_Breakout_H1_Long.
+   - TVB_Breakout_H1_Short.
+
+   Los nombres son etiquetas propuestas, no claves internas supuestas.
+
+3. Prefiere componentes nativos si preservan exactamente la semántica.
+   Construye wrappers custom cuando aporten composición o integración.
+
+4. No generes el short negando toda la condición long.
+   Declara el emparejamiento direccional y el filtro compartido.
+
+5. Verifica:
+   - tipos de entrada y salida;
+   - series y timeframes;
+   - shifts;
+   - períodos;
+   - composición SMA sobre ATR;
+   - exclusión de la vela de señal del canal;
+   - parámetros admitidos por el Builder;
+   - comportamiento con historial insuficiente.
+
+6. Si necesitas bloques de valor para las salidas, distingue:
+   - multiplicador adimensional;
+   - distancia de precio;
+   - distancia en puntos o pips;
+   - nivel absoluto de precio.
+
+   No sustituyas uno por otro.
+   No asumas que un bloque de nivel puede acceder al precio de entrada o
+   al estado de la operación; compruébalo.
+
+7. Genera los XML mediante los mecanismos de la skill.
+8. Ejecuta sus validadores reales.
+9. Guarda comandos, códigos de salida y logs.
+10. Documenta importación o registro y actualización del catálogo.
+
+PRUEBAS SEMÁNTICAS
+Además del validador del toolkit, prepara pruebas reproducibles para:
+- ruptura long verdadera y falsa;
+- ruptura short verdadera y falsa;
+- igualdad sin señal;
+- volatilidad expansiva habilitando ambos lados;
+- ausencia de expansión bloqueando ambos lados;
+- D1 incompleto ignorado;
+- historial insuficiente;
+- canal sin incluir la vela de señal.
+
+Las pruebas adicionales no sustituyen al motor SQX.
+Si no puedes ejecutarlas, márcalas como propuestas.
+
+PUERTA DE CALIDAD
+No alimentar grupos con bloques todavía ausentes del catálogo que utilizará
+la siguiente skill. Importa o registra mediante el mecanismo documentado,
+reconstruye el catálogo y verifica las referencias.
+
+════════════════════════════════════════════════════════════
+F. FASE 2 — SKILL sqx-random-group
+════════════════════════════════════════════════════════════
+
+ENCARGO A LA SKILL
+“Crea grupos tipados y separados por función para régimen, volatilidad,
+ruptura y valores de salida compatibles con los bloques validados.”
+
+REGLA ARQUITECTÓNICA
+Un Random Group proporciona alternativas de selección.
+No asumir que seleccionar un grupo equivale a exigir todos sus miembros.
+
+Mantener en la plantilla:
+Régimen AND ExpansiónVolatilidad AND Ruptura.
+
+PROCEDIMIENTO
+
+1. Lee las instrucciones reales de sqx-random-group.
+2. Actualiza el catálogo con los bloques del paso anterior.
+3. Crea grupos por función y dirección cuando sea necesario.
+4. Para la estrategia base utiliza selección determinista.
+   Si se admiten grupos de un solo miembro, pueden utilizarse.
+   Si no, conserva las condiciones fijas directamente en la plantilla.
+   No inventes alternativas para llenar un grupo.
+
+5. Para cada grupo registra:
+   - tipo;
+   - miembros;
+   - función;
+   - timeframe;
+   - parámetros variables y fijos;
+   - referencias internas;
+   - emparejamiento long/short.
+
+6. Crea Value Groups para salidas solo si sus tipos son compatibles
+   con los slots reales de la plantilla.
+
+7. Si SL y TP reciben multiplicadores mediante parámetros numéricos nativos,
+   utiliza ese mecanismo. No fuerces un Value Group de niveles de precio
+   dentro de un campo que espera un número adimensional.
+
+8. Excluye indicadores, familias y timeframes ajenos a la tesis.
+
+9. Exporta en el formato realmente soportado por la skill.
+   No asumas que los grupos utilizan .sqx.
+10. Valida tipos, referencias y dependencias.
+11. Registra/importa lo necesario y reconstruye catálogos.
+
+PUERTA DE CALIDAD
+Cero referencias colgantes, cero incompatibilidades de tipo y ninguna forma
+de omitir los tres componentes obligatorios de la entrada.
+
+════════════════════════════════════════════════════════════
+G. FASE 3 — SKILL sqx-strategy-template
+════════════════════════════════════════════════════════════
+
+ENCARGO A LA SKILL
+“Ensambla una plantilla base determinista y otra plantilla de investigación
+acotada, ambas con régimen D1 y entradas H1, usando estructuras compatibles
+de mi instalación.”
+
+G.1. Plantilla BASELINE
+
+Reproduce exactamente la estrategia:
+- EMA D1: 200.
+- ATR H1: 14.
+- Media del ATR: 20.
+- Canal: 20.
+- SL: 1.5 ATR_entry.
+- TP: 3.0 ATR_entry.
+- Activación trailing: 1.5 ATR_entry.
+- Distancia trailing: 1.5 ATR cerrado.
+
+Sin condiciones opcionales ni aleatoriedad estructural.
+
+G.2. Plantilla RESEARCH
+
+Conserva fija la arquitectura y permite inicialmente:
+- EMA D1: 150, 200, 250.
+- Canal H1: 15, 20, 30.
+- SL: 1.25, 1.50, 1.75 ATR_entry.
+- TP: 2.5, 3.0, 3.5 ATR_entry.
+
+Mantener fijos en esta primera investigación:
+- ATR: 14.
+- Media ATR: 20.
+- Activación y distancia del trailing: 1.5.
+
+Estas son propuestas de búsqueda, no parámetros rentables conocidos.
+
+Documenta el espacio nominal de 81 combinaciones.
+Usa evaluación exhaustiva si está soportada y cabe en el presupuesto.
+Si el Builder utiliza muestreo o genética, documenta semillas, duplicados
+y cobertura real; no lo presentes como exploración exhaustiva.
+
+No añadir nuevas reglas para mejorar un resultado visto.
+
+G.3. Comprobaciones
+
+1. Parte de un esqueleto local compatible.
+2. Verifica símbolos, chart IDs y asociación H1/D1.
+3. Conserva el AND de los tres componentes.
+4. Mantén simetría estructural y parámetros compartidos.
+5. Confirma cálculo por vela y timing de ejecución.
+6. Verifica acceso al ATR_entry y persistencia del estado del trailing.
+7. Confirma que ninguna salida queda desactivada por un slot incompatible.
+8. Exporta las plantillas .sqx mediante la skill.
+9. Ejecuta sus validadores.
+10. Realiza importación y Build si existe acceso real al motor.
+11. Ejecuta un backtest pequeño para inspeccionar operaciones si es posible.
+
+Comprueba manualmente o mediante trazas:
+- una entrada long;
+- una entrada short;
+- stop inicial;
+- take profit;
+- activación del trailing;
+- stop que nunca retrocede;
+- ausencia de información futura.
+
+No inventes operaciones si la muestra no contiene alguno de estos casos.
+
+════════════════════════════════════════════════════════════
+H. FASE 4 — SKILL sqx-strategy-project
+════════════════════════════════════════════════════════════
+
+ENCARGO A LA SKILL
+“Genera un proyecto .cfx a partir de un donante local compatible que conecte
+las plantillas, los datos MTF y las pruebas de investigación soportadas.”
+
+H.1. Inspección de datos
+
+Antes de configurar fechas:
+- inventaría cobertura H1/D1 y datos de mayor resolución;
+- registra proveedor, zona horaria y DST;
+- identifica huecos, duplicados y anomalías;
+- confirma cómo se construye D1;
+- reserva calentamiento anterior a cada período evaluado.
+
+No rellenes huecos de forma silenciosa.
+
+H.2. Partición cronológica
+
+Propuesta inicial sobre el período utilizable:
+- 60% desarrollo/in-sample;
+- 20% validación y selección;
+- 20% holdout final intacto.
+
+Registra fechas exactas antes de buscar.
+No usar el holdout para filtrar, clasificar, optimizar ni elegir variantes.
+
+La validación usada repetidamente para elegir candidatos deja de ser
+una prueba final independiente.
+
+El historial anterior puede utilizarse para calentar indicadores sin
+contabilizar operaciones fuera del tramo evaluado.
+
+Documenta cómo se tratan posiciones que cruzan fronteras temporales.
+No transferir información futura mediante el estado del backtest.
+
+H.3. Secuencia de tareas
+
+Configura, según soporte local:
+
+1. Auditoría de datos.
+2. Backtest de BASELINE.
+3. Construcción/evaluación acotada de RESEARCH.
+4. Filtros predefinidos y eliminación de duplicados.
+5. Retest con mayor precisión.
+6. Estrés de costes y ejecución.
+7. Monte Carlo.
+8. Sensibilidad paramétrica.
+9. Walk-forward si está disponible y hay historia suficiente.
+10. Evaluación del candidato congelado en holdout, una sola vez.
+11. Exportación de resultados e informe.
+
+El holdout debe quedar fuera de ciclos automáticos de selección.
+Si una tarea no existe en esta versión, no inventar su configuración:
+entregar un procedimiento externo o manual identificado como pendiente.
+
+H.4. Ejecución realista
+
+- Incorporar spread, comisión, swap y slippage disponibles.
+- Declarar el modelo de precios bid/ask y conversión monetaria.
+- Utilizar la mayor precisión viable para evaluar SL, TP y trailing.
+- Si una vela toca SL y TP y no existe resolución suficiente, declarar
+  la ambigüedad o aplicar un tratamiento conservador documentado.
+- No aceptar OHLC grueso como confirmación definitiva de salidas intrabar.
+- Informar restricciones de stops, volumen y margen.
+
+H.5. Monte Carlo y estrés
+
+Descubrir qué modalidades soporta realmente la instalación.
+Distinguir:
+
+A. Remuestreo u omisión de operaciones:
+   modifica la muestra de resultados.
+
+B. Reordenamiento de operaciones:
+   evalúa principalmente sensibilidad de trayectoria y drawdown;
+   no demuestra una ventaja y, bajo ciertos supuestos de tamaño fijo,
+   puede no cambiar el beneficio total.
+
+C. Perturbación de costes o ejecución:
+   requiere el mecanismo de simulación correspondiente.
+
+D. Perturbación de datos o parámetros:
+   requiere recalcular señales mediante nuevos backtests.
+
+Propuesta:
+- 1 000 simulaciones por modalidad si el presupuesto lo permite.
+- Semillas registradas cuando estén soportadas.
+- Costes base y escenarios de spread/slippage incrementados un 25% y un 50%.
+- Perturbaciones paramétricas cercanas sin utilizar el holdout.
+
+No presentar todos los escenarios como funciones nativas ya confirmadas.
+
+Reportar:
+- distribución del resultado neto;
+- drawdown y cola desfavorable;
+- proporción de simulaciones perdedoras;
+- deterioro respecto del caso base;
+- supuestos, limitaciones y errores.
+
+No convertir automáticamente frecuencias simuladas en probabilidades reales.
+
+H.6. Criterios de evaluación
+
+Antes de ejecutar la búsqueda, redacta evaluation_policy.md con:
+- métricas;
+- filtros;
+- umbrales propuestos;
+- justificación;
+- regla de ranking;
+- tamaño mínimo de muestra o criterio de evidencia insuficiente.
+
+No retocar los umbrales después de ver resultados.
+No presentar un Profit Factor o número de operaciones aislado
+como prueba universal de robustez.
+
+Priorizar:
+- resultados después de costes;
+- drawdown y recuperación;
+- estabilidad temporal;
+- mesetas paramétricas frente a picos;
+- diversidad efectiva de candidatos;
+- concentración de beneficios;
+- comportamiento long y short por separado;
+- número total de variantes examinadas.
+
+Si la evidencia no alcanza, concluir “inconcluso” o “descartado”.
+No relajar filtros silenciosamente para producir un ganador.
+
+H.7. Generación y validación del proyecto
+
+1. Clona un donante local compatible.
+2. Conserva las estructuras obligatorias.
+3. Asocia las plantillas y los datos correctos.
+4. Configura solo tareas y campos documentados.
+5. Genera el archivo .cfx.
+6. Ejecuta los validadores de la skill.
+7. Comprueba rutas, referencias, tareas y orden.
+8. Ejecuta una prueba pequeña cuando esté permitido.
+9. Deja la búsqueda masiva preparada si no hay presupuesto autorizado.
+
+════════════════════════════════════════════════════════════
+I. VALIDACIÓN TRANSVERSAL Y TRAZABILIDAD
+════════════════════════════════════════════════════════════
+
+En cada fase verifica:
+
+1. Sintaxis:
+   El archivo puede analizarse.
+
+2. Tipos y esquema:
+   Componentes y parámetros compatibles.
+
+3. Referencias:
+   Todas las dependencias existen en el entorno de consumo.
+
+4. Semántica:
+   La implementación coincide con la especificación.
+
+5. Importación:
+   SQX acepta el artefacto.
+
+6. Build:
+   SQX construye la estrategia o tarea.
+
+7. Ejecución:
+   Un backtest real puede completarse.
+
+8. Investigación:
+   La evaluación respeta la separación de datos y costes.
+
+No llames “validación completa” a haber superado solo los primeros niveles.
+
+Incluye una matriz:
+requisito → artefacto → componente → prueba → evidencia → estado.
+
+Si una prueba falla:
+- preserva el error;
+- identifica causa probable;
+- corrige sin cambiar silenciosamente la estrategia;
+- repite la prueba;
+- registra la modificación.
+
+════════════════════════════════════════════════════════════
+J. ENTREGABLES
+════════════════════════════════════════════════════════════
+
+Crea una estructura lógica de trabajo, adaptada a los formatos reales:
+
+00_environment/
+01_specification/
+02_custom_blocks/
+03_random_groups/
+04_templates/
+05_project/
+06_validation/
+07_research_results/
+08_import_and_run/
+
+Entregar, cuando puedan generarse realmente:
+
+- Diagnóstico del entorno.
+- Especificación formal de la estrategia.
+- Registro de supuestos y desviaciones.
+- XML de bloques custom.
+- Artefactos de grupos en su formato real.
+- Plantilla BASELINE .sqx.
+- Plantilla RESEARCH .sqx.
+- Proyecto .cfx.
+- Política de evaluación previa a la búsqueda.
+- Matriz de trazabilidad.
+- Logs y resultados de validación.
+- Resultados reales de pruebas ejecutadas.
+- Lista de verificaciones pendientes.
+- Guía de importación, ejecución y restauración.
+- Manifiesto con versiones, dependencias y hashes SHA-256 de archivos generados.
+
+No crees archivos vacíos para aparentar entregables terminados.
+No presentes rutas propuestas como archivos ya existentes.
+No llames al manifiesto “lockfile reproducible” salvo que el toolkit realmente
+lo interprete como tal.
+
+════════════════════════════════════════════════════════════
+K. GUÍA DE IMPORTACIÓN Y USO
+════════════════════════════════════════════════════════════
+
+Para cada artefacto indica:
+- archivo exacto;
+- dependencia previa;
+- ubicación de importación confirmada para mi versión;
+- pasos;
+- señal observable de éxito;
+- prueba posterior;
+- errores frecuentes;
+- procedimiento de reversión.
+
+Orden lógico:
+1. Bloques.
+2. Grupos.
+3. Plantillas.
+4. Proyecto.
+5. Datos y correspondencia de charts.
+6. Build.
+7. Backtest pequeño.
+8. Investigación autorizada.
+
+No inventes nombres exactos de botones o menús.
+Si no puedes verificarlos mediante documentación local o acceso a la interfaz,
+marca ese paso como “ubicación de interfaz pendiente de confirmar”.
+
+════════════════════════════════════════════════════════════
+L. FORMATO DE TU RESPUESTA Y COMIENZO
+════════════════════════════════════════════════════════════
+
+Responde en español.
+
+Al comenzar:
+1. Expón el alcance y las decisiones propuestas.
+2. Informa qué acceso y skills están realmente disponibles.
+3. Presenta el plan breve.
+4. Ejecuta la Fase 0 antes de crear artefactos.
+
+En cada fase muestra:
+- skill utilizada;
+- especificación breve;
+- entradas y dependencias;
+- operaciones y comandos realmente ejecutados;
+- archivos generados;
+- validaciones con evidencia;
+- estado y siguiente dependencia.
+
+Al finalizar entrega:
+1. Resumen ejecutivo.
+2. Tabla de artefactos y estados.
+3. Comparación de estrategia solicitada frente a implementada.
+4. Evidencias técnicas.
+5. Resultados cuantitativos, solo si fueron calculados.
+6. Instrucciones verificadas para importar y ejecutar.
+7. Bloqueos, limitaciones y próximos pasos concretos.
+
+No termines con una pregunta de ofrecimiento.
+No prometas rentabilidad.
+No confundas “archivo generado”, “estrategia ejecutable” y
+“estrategia con evidencia de robustez”.
+
+COMIENZA AHORA POR EL DIAGNÓSTICO LOCAL.

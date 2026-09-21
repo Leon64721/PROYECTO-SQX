@@ -1,0 +1,20 @@
+Usa $analizar-portafolio-mensual para auditar este portafolio en incubación.
+
+Compara el backtest con el export real de MT5 y la referencia de Myfxbook. Valida primero la consistencia de los datos y evita contar dos veces las operaciones de MT5.
+
+Calcula rentabilidad, profit factor, win rate, promedio por trade, drawdown, frecuencia, balance, equity y posiciones abiertas. Analiza los resultados por activo y por EA, mide la paridad live frente al histórico y detecta si un bloque está compensando el deterioro de otro.
+
+Emite un dictamen crítico: APROBADO, VIGILAR o CONGELAR Y AUDITAR. No recomiendes aumentar el riesgo ni declares validado el edge si la muestra todavía es pequeña.
+
+Finalmente, crea el reporte mensual en PDF con tablas, gráficos comparativos, metodología, limitaciones y acciones recomendadas para el siguiente mes.
+
+Nombre del portafolio: [NOMBRE]
+Número de mes de incubación: [MES]
+Balance inicial: [BALANCE]
+Fecha de corte: [FECHA]
+
+Adjunto:
+1. CSV del backtest o QuantAnalyzer.
+2. ReportHistory HTML de MT5.
+3. Enlace o captura de Myfxbook.
+4. Export del mes anterior, si corresponde.

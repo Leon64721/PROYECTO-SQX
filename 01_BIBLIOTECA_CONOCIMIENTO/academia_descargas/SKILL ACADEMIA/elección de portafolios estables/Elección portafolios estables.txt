@@ -1,0 +1,12 @@
+Usa $seleccionar-portafolios-estables para auditar los reportes adjuntos de StrategyQuant X y QuantAnalyzer y construir un top 3 de portafolios priorizando estabilidad, balance y suficiencia de muestra, no crecimiento explosivo.
+
+Recalcula la correlación mensual, concentración por activo y dirección, número efectivo de estrategias, trades Full/OOS, OOS retention, estancamiento máximo y actual, rolling 12 y 24 meses, años negativos, R², Sharpe, drawdown y dependencia de periodos excepcionales.
+
+Aplica los filtros stability-first sin reducir los umbrales silenciosamente. Rechaza o deja en revisión las combinaciones con muestra insuficiente, OOS débil, estancamiento prolongado, recuperación explosiva al final o concentración excesiva.
+
+Propón:
+1. Balance Core.
+2. Linear Stability.
+3. Large Sample Stability.
+
+Explica cuantitativamente cada descarte y valida las capturas de QuantAnalyzer usando Direction: L+S y X Axis: Time. Si la información no permite aprobar una combinación, indícame exactamente qué archivo o exportación debo obtener. Actúa con independencia frente a las conclusiones de QuantAnalyzer.

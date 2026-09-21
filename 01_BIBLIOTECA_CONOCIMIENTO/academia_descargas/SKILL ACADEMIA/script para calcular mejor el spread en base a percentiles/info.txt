@@ -1,0 +1,4 @@
+Buenas noches @rentable, les comparto por aca un cript para calcular mejor el spread en base a percentiles, basicamente lo que tienen que hacer es cargarlo en el mt5 y el va agarrar todos los activos que tengan en observacion de mercado y les va a sacar los percentiles, esto les puede servir para calcular mejor un spread optimo para builder y posteriormente para randomizarlo en montecarlo y tener una muestra mas fiable, una vez terminado les generara un archivo en la siguiente ruta, asi podran incluso utilizar esto como recurso y preguntarle a la IA que les recomiende en base a los percentiles spread segun el activo que quieran sacar las estrategias y posteriormente rangos para el montecarlo, le dan en abrir carpeta de datos y en files y asi sale el nombre. 
+Image
+Attachment file type: unknown
+RapidSpreadStats_MarketWatch_V3_1_ONE_CSV_FINAL.mq5

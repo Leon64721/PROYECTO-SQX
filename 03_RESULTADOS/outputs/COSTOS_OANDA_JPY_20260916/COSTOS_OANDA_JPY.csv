@@ -1,0 +1,10 @@
+mt5_symbol,instrument,description,digits,tick_step,pip_size,point_value_usd,contract_size,bid,ask,mid,spread_price_units,spread_pips,swap_mode,swap_long_pct_annual,swap_short_pct_annual,swap_long_usd_per_lot_day,swap_short_usd_per_lot_day,volume_step,min_distance_points,min_distance_price,path
+AUDJPY,AUDJPY,Australian Dollar vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,110.639,110.654,110.6465,0.015,1.5,5,14.46,-26.76,28.47,-52.69,0.01,5,0.005,Standard\Forex\AUDJPY
+CADJPY,CADJPY,Canadian Dollar vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,111.593,111.607,111.6,0.014,1.4,5,1.44,-13.92,2.86,-27.64,0.01,5,0.005,Standard\Forex\CADJPY
+CHFJPY,CHFJPY,Swiss Frank vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,189.336,189.366,189.351,0.03,3.0,5,-12.9,0.54,-43.47,1.82,0.01,5,0.005,Standard\Forex\CHFJPY
+EURJPY,EURJPY,Euro vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,179.09,179.108,179.099,0.018,1.8,5,3.48,-15.6,11.09,-49.72,0.01,5,0.005,Standard\Forex\EURJPY
+GBPJPY.sml,GBPJPY,Great British Pound vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,208.968,208.979,208.9735,0.011,1.1,5,10.86,-23.16,40.38,-86.12,0.01,5,0.005,Standard\Forex\Forex.sml\GBPJPY.sml
+NZDJPY,NZDJPY,New Zealand Dollar vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,89.143,89.166,89.1545,0.023,2.3,5,5.4,-17.88,8.57,-28.37,0.01,5,0.005,Standard\Forex\NZDJPY
+SGDJPY,SGDJPY,Singapore Dollar vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,122.156,122.177,122.16650000000001,0.021,2.1,5,-2.76,-9.96,-6.0,-21.65,0.01,5,0.005,Standard\Forex\SGDJPY
+USDJPY.sml,USDJPY,US Dollar vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,156.087,156.099,156.093,0.012,1.2,5,12.06,-24.18,33.5,-67.16,0.01,5,0.005,Standard\Forex\Forex.sml\USDJPY.sml
+ZARJPY,ZARJPY,South African Rand vs Japanese Yen,3,0.001,0.01,640.619094,100000.0,9.528,9.54,9.533999999999999,0.012,1.2,5,19.39,-52.71,3.29,-8.94,0.01,0,0.0,Standard\Forex\ZARJPY

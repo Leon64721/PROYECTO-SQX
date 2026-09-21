@@ -1,0 +1,12 @@
+Buenos días @rentable  les dejo la Skill con la que analizo los portafolios mes por mes que se sacan de SQX y se llevan a demo o real (Incubación) para validar coherencia operativa en el prompt se encuentra lo que le deben subir.
+Usa $analizar-portafolio-mensual para auditar este portafolio en incubación.
+
+Compara el backtest con el export real de MT5 y la referencia de Myfxbook. Valida primero la consistencia de los datos y evita contar dos veces las operaciones de MT5.
+
+Calcula rentabilidad, profit factor, win rate, promedio por trade, drawdown, frecuencia, balance, equity y posiciones abiertas. Analiza los resultados por activo y por EA, mide la paridad live frente al histórico y detecta si un bloque está compensando el deterioro de otro.
+
+Prompt analisis de portafolio mensual.txt
+2 KB
+Attachment file type: archive
+analizar-portafolio-mensual.zip
+15.21 KB

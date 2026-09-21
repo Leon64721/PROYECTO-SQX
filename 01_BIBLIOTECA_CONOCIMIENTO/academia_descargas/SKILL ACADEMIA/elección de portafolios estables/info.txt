@@ -1,0 +1,12 @@
+Les dejo por aquí una de elección de portafolios estables luego de que se tienen varias estrategias de SQX  , así mismo su prompt
+Attachment file type: archive
+seleccionar-portafolios-estables.zip
+12.83 KB
+Usa $seleccionar-portafolios-estables para auditar los reportes adjuntos de StrategyQuant X y QuantAnalyzer y construir un top 3 de portafolios priorizando estabilidad, balance y suficiencia de muestra, no crecimiento explosivo.
+
+Recalcula la correlación mensual, concentración por activo y dirección, número efectivo de estrategias, trades Full/OOS, OOS retention, estancamiento máximo y actual, rolling 12 y 24 meses, años negativos, R², Sharpe, drawdown y dependencia de periodos excepcionales.
+
+Aplica los filtros stability-first sin reducir los umbrales silenciosamente. Rechaza o deja en revisión las combinaciones con muestra insuficiente, OOS débil, estancamiento prolongado, recuperación explosiva al final o concentración excesiva.
+
+Elección portafolios estables.txt
+2 KB

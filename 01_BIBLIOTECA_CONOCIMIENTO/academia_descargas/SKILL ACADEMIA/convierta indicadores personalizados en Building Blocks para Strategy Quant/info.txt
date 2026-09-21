@@ -1,0 +1,4 @@
+Buenos días @rentable , les dejo una Skill que creé para que ChatGPT convierta indicadores personalizados en Building Blocks para Strategy Quant , basta con subir el indicador en mq5 o en mq4 y el ya hace toda la conversión , le pueden preguntar como importarlo al programa tambien, ya tiene ese conocimiento. Saludos y un abrazo
+Attachment file type: archive
+crear-building-blocks-sqx-v1.zip
+51.62 KB

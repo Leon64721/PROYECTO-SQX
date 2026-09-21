@@ -1,0 +1,3 @@
+Buenos días @rentable   les dejo este skill de IA para que puedan crear sus propios bloques de construcción (Señales o indicadores) personalizados por medio de Claude o ChatGPT , etc.  Codex hizo un gran trabajo , espero les sirva tanto como a mi me está sirviendo 
+
+https://strategyquant.com/codebase/custom-blocks-skills/
