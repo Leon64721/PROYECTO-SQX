@@ -1,0 +1,136 @@
+{
+  "skill": "sqx-custom-block",
+  "catalog": "E:\\PROYECTOS\\CLAUDE CODE\\STRATEGY QUANT\\.claude\\skills\\sqx-custom-block\\catalog.json",
+  "passed": 8,
+  "total": 8,
+  "cases": [
+    {
+      "name": "rsi_pair_example",
+      "group": "A\u00b7regression",
+      "ok": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "gen_example.py runs"
+        },
+        {
+          "ok": true,
+          "label": "validate.py exit 0"
+        },
+        {
+          "ok": true,
+          "label": "assess: 0 CRITICAL (got 0)"
+        },
+        {
+          "ok": true,
+          "label": "opposite pair symmetric"
+        }
+      ]
+    },
+    {
+      "name": "pricelevel_example",
+      "group": "A\u00b7regression",
+      "ok": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "gen_pricelevel_example.py runs"
+        },
+        {
+          "ok": true,
+          "label": "validate.py exit 0"
+        },
+        {
+          "ok": true,
+          "label": "assess: 0 CRITICAL (got 0) \u2014 period-open shift0 must be exempt"
+        },
+        {
+          "ok": true,
+          "label": "band pair symmetric"
+        }
+      ]
+    },
+    {
+      "name": "guardrail_refuse_talib",
+      "group": "B\u00b7guardrail",
+      "ok": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "talib_AD: refused without allow_talib"
+        },
+        {
+          "ok": true,
+          "label": "talib_AD: allowed with allow_talib=True"
+        }
+      ]
+    },
+    {
+      "name": "guardrail_refuse_shift0_ohlc",
+      "group": "B\u00b7guardrail",
+      "ok": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "HighD: shift=0 refused"
+        },
+        {
+          "ok": true,
+          "label": "HighD: shift=1 allowed"
+        },
+        {
+          "ok": true,
+          "label": "HighD: shift=0 allowed via allow_shift0"
+        }
+      ]
+    },
+    {
+      "name": "guardrail_refuse_phantom",
+      "group": "B\u00b7guardrail",
+      "ok": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "phantom atom refused with KeyError"
+        }
+      ]
+    },
+    {
+      "name": "multi_output_line_param",
+      "group": "B\u00b7guardrail",
+      "ok": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "ADX: emitted block carries #Line# param"
+        },
+        {
+          "ok": true,
+          "label": "validate.py exit 0 (check 7 passes) \u2014 got 0"
+        }
+      ]
+    },
+    {
+      "name": "validator_catches_name_suffix",
+      "group": "C\u00b7validator",
+      "ok": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "validate.py rejects _<digits><letters> name"
+        }
+      ]
+    },
+    {
+      "name": "validator_catches_undeclared_param",
+      "group": "C\u00b7validator",
+      "ok": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "validate.py rejects undeclared #Int2#"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+---
+description: Orquestador del proyecto SQX — frente único, no tocar user/, leer handoff
+alwaysApply: true
+---
+
+# Orquestador (resumen)
+
+Fuente de verdad: `AGENTS.md`. Si este archivo y AGENTS.md discrepan, gana AGENTS.md.
+
+1. Pregunta 0: un frente (`CUSTOM_PROJECTS` | `QLIB_ONNX` | `PROPFIRM` | `GOBERNANZA`). `MULTI_FRENTE` bloquea.
+2. Antes de re-estudiar el repo: leer `SESSION_HANDOFF.md` y `SESSION_HANDOFF-<FRENTE>.md`.
+3. Orquestar = brief corto. Ejecutar authoring SQX = Claude Code. Grep/edits = subagente barato.
+4. No tocar `user/` ni `C:\SQX_144_Full` sin orden explícita.
+5. Prohibido `git add .`. No commit/push sin confirmación de Fabian.
+6. Al cerrar: actualizar maestro + handoff del frente + métrica 40/40/20.

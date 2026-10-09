@@ -1,1 +1,39 @@
-node_modules
+# Dependencias
+node_modules/
+
+# Espejo SQX — nunca al repo público (Opción B)
+user/
+
+# Temporales y spikes
+05_ARCHIVO_DESCARTABLE/
+graphify-out/
+.gstack/
+
+# Secretos y binarios
+.env
+**/*.lic
+**/*.jar
+hs_err_*.log
+
+# Claude Code — config local de esta máquina
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# Bootstrap SQX por instalación (regenerable)
+.claude/skills/**/catalog.json
+.claude/skills/**/catalog.md
+.claude/skills/**/out/
+.claude/skills/**/out.xml
+.claude/skills/**/engine/catalog.json
+.claude/skills/project-organizer/logs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store

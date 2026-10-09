@@ -1,0 +1,202 @@
+{
+  "_comment": "Taxonomia machine-readable del proyecto STRATEGY QUANT. Editar aqui cuando la estructura evolucione; taxonomy.md se regenera con engine/render_taxonomy.py.",
+  "project_root": "E:\\PROYECTOS\\CLAUDE CODE\\STRATEGY QUANT",
+  "version": "2026-09-17",
+
+  "never_touch": [
+    "user"
+  ],
+
+  "keep_in_root": [
+    ".git",
+    ".claude",
+    ".gstack",
+    ".gitignore",
+    ".graphifyignore",
+    ".aider.conf.yml",
+    ".cursor",
+    "AGENTS.md",
+    "SESSION_HANDOFF.md",
+    "SESSION_HANDOFF-GOBERNANZA.md",
+    "SESSION_HANDOFF-CUSTOM_PROJECTS.md",
+    "SESSION_HANDOFF-QLIB_ONNX.md",
+    "SESSION_HANDOFF-PROPFIRM.md",
+    "CLAUDE.md",
+    "TODOS.md",
+    "Aider_Guia_Rapida.txt",
+    "package.json",
+    "package-lock.json",
+    "node_modules",
+    "graphify-out",
+    "01_BIBLIOTECA_CONOCIMIENTO",
+    "02_PROYECTOS_ACTIVOS",
+    "03_RESULTADOS",
+    "04_HERRAMIENTAS_SCRIPTS",
+    "05_ARCHIVO_DESCARTABLE",
+    "user"
+  ],
+
+  "out_of_project": {
+    "description": "Contenido detectado que no pertenece a este proyecto de trading en absoluto (ej. bots de Discord, apps no relacionadas). Se mueve a E:\\VARIOS, no a ninguna carpeta interna.",
+    "destination": "E:\\VARIOS",
+    "name_patterns": [
+      "(?i)discord",
+      "(?i)^backup[ _]"
+    ]
+  },
+
+  "categories": [
+    {
+      "id": "01_BIBLIOTECA_CONOCIMIENTO",
+      "label": "Biblioteca de conocimiento",
+      "description": "Material de consulta reutilizable: skills, indicadores custom, plantillas .cfx, material descargado de cursos/academia SQX. NO se ejecuta como proyecto propio; se consulta/usa como insumo.",
+      "subfolders": {
+        "skills_sqx": "Skills/paquetes de prompts para construir Custom Projects u otros artefactos SQX (carpetas tipo SQX_*_SKILLS_*, SQX_CUSTOM_BLOCKS_SKILL, SQX_PROMPT_BUILDER)",
+        "skills_sqx/plantillas_cfx": ".cfx base/plantilla reutilizables como punto de partida (no resultados de una corrida)",
+        "academia_descargas": "Material descargado de cursos/academia de SQX (PDFs, videos, notas) sin clasificar aun por tema",
+        "custom_indicators": "Indicadores custom para plataformas externas (MT5, etc.)",
+        "VolumeProfile": "Indicador/paquete Volume Profile"
+      },
+      "name_patterns": [
+        "(?i)^SQX_.*SKILL",
+        "(?i)^SQX_PROMPT_BUILDER",
+        "(?i)^SKILL ACADEMIA",
+        "(?i)^custom_indicators$",
+        "(?i)^VolumeProfile$"
+      ],
+      "content_hints": [
+        "Contiene SKILL.md, catalog.json/.md, o un README que describe una skill/prompt reutilizable",
+        "Es material descargado (curso, ebook, video) sin relacion con una corrida/proyecto especifico"
+      ]
+    },
+    {
+      "id": "02_PROYECTOS_ACTIVOS",
+      "label": "Proyectos activos",
+      "description": "Trabajo en desarrollo sobre un Custom Project o iniciativa concreta y con nombre propio (ORB, QlibSignal/ONNX, futuros proyectos de estrategia).",
+      "subfolders": {
+        "qlib_onnx_bridge": "Todo lo relacionado al puente Qlib (modelo ML) -> ONNX -> bloque nativo QlibSignal en SQX",
+        "orb_custom_project": "Todo lo relacionado al Custom Project ORB (Opening Range Breakout): scripts fix_orb_*, carpetas _work_fix_orb*, .cfx BASE_CP_MASTER_CLEAN_V1_ORB*, notas de auditoria especificas de ORB"
+      },
+      "name_patterns": [
+        "(?i)^_work_fix_orb",
+        "(?i)^fix_orb_",
+        "(?i)^patch_orb_cfx",
+        "(?i)^extract_orb_cfx",
+        "(?i)^BASE_CP_MASTER_CLEAN_V1_ORB",
+        "(?i)^qlib_export$",
+        "(?i)qlib.*onnx|onnx.*qlib"
+      ],
+      "content_hints": [
+        "Scripts o carpetas nombrados por un proyecto/estrategia especifico con iteraciones (v2, v3, v4...)",
+        "Se espera que este activo (se sigue trabajando) — si ya no se toca hace meses, es candidato a 03_RESULTADOS o 05_ARCHIVO_DESCARTABLE"
+      ]
+    },
+    {
+      "id": "03_RESULTADOS",
+      "label": "Resultados y outputs",
+      "description": "Salidas generadas por scripts/corridas: reportes, CSV/JSON de export, XML de importacion a SQX, databanks exportados.",
+      "subfolders": {
+        "outputs": "Salidas de scripts propios organizadas por fecha/tema (ej. COSTOS_OANDA_JPY_20260916)",
+        "Resultados Databank": "Exports de databanks de SQX (CSV de Retester) para analisis",
+        "_misc_root_outputs": "Archivos de salida sueltos que aparecieron en la raiz sin carpeta propia (candidatos a moverse a una subcarpeta con nombre/fecha)"
+      },
+      "name_patterns": [
+        "(?i)^outputs$",
+        "(?i)^Resultados",
+        "(?i)_output\\.(txt|csv|json|log)$",
+        "(?i)^COSTOS_",
+        "(?i)^REPORTE_"
+      ],
+      "content_hints": [
+        "Es el producto de correr un script o una corrida de SQX, no el script en si",
+        "Tipicamente tiene fecha en el nombre o timestamp de creacion reciente"
+      ]
+    },
+    {
+      "id": "04_HERRAMIENTAS_SCRIPTS",
+      "label": "Herramientas y scripts generales",
+      "description": "Scripts .py/.ps1/.bat de proposito general y reutilizable, no atados a un solo proyecto especifico (analisis de databank, parcheo generico de .cfx, utilidades MT5).",
+      "subfolders": {},
+      "name_patterns": [
+        "(?i)\\.py$",
+        "(?i)\\.ps1$",
+        "(?i)\\.bat$",
+        "(?i)^PROTOCOL_.*\\.md$"
+      ],
+      "exclude_if_matches_category": ["02_PROYECTOS_ACTIVOS"],
+      "content_hints": [
+        "Script reutilizable para cualquier proyecto/corrida (ej. analyze_databank.py, patch_cfx.py, check_db_paths.py)",
+        "Si el script tiene un nombre/proposito atado a un proyecto especifico (ej. fix_orb_*), va a 02_PROYECTOS_ACTIVOS en vez de aqui"
+      ]
+    },
+    {
+      "id": "05_ARCHIVO_DESCARTABLE",
+      "label": "Archivo descartable (staging, no borrar sin confirmar)",
+      "description": "Carpetas/archivos temporales, de prueba, o de una exploracion puntual ya cerrada. Se mueven aqui para sacarlos de la raiz, pero NUNCA se borran automaticamente — el usuario decide que eliminar.",
+      "subfolders": {},
+      "name_patterns": [
+        "(?i)^temp_",
+        "(?i)^tmp$",
+        "(?i)^spike$",
+        "(?i)^test$",
+        "(?i)^tests$",
+        "(?i)^__pycache__$",
+        "(?i)^_work_.*_obsolete",
+        "(?i)\\.log$",
+        "(?i)^hs_err_pid"
+      ],
+      "content_hints": [
+        "Nombre empieza con temp_/tmp/spike/test o es cache de Python",
+        "El propio usuario ya lo calificaba de 'temporal' o 'de prueba' cuando se creo"
+      ]
+    }
+  ],
+
+  "classification_priority": [
+    "never_touch",
+    "keep_in_root",
+    "out_of_project",
+    "categories (in listed order: 01, 02, 03, 04, 05)",
+    "ask_user (no pattern matched -> do NOT guess silently, ask)"
+  ],
+
+  "content_catalog": {
+    "_comment": "Capa 2 de la skill (agregada 2026-09-16): NO decide DONDE vive un archivo (eso ya lo hace 'categories' arriba), sino QUE ES por dentro -- tipo de estrategia/logica y estado de vigencia. Se guarda en content_catalog.json (mismo directorio que este taxonomy.json), fuente de verdad editable. Vista humana generada en 01_BIBLIOTECA_CONOCIMIENTO\\CATALOGO_PROYECTO.md via engine/render_catalog.py. Mismo principio que el resto de la skill: nunca se adivina strategy_type/status en silencio, se pregunta al usuario (classify_content.py solo da pistas de contenido, nunca decide solo).",
+
+    "kinds": {
+      "custom_project": "Un Custom Project completo (.cfx) -- Builder + cadena de robustez (OOS, MC, WFA, etc.) para un simbolo/broker especifico.",
+      "portfolio_project": "Una carpeta bajo user\\projects\\<Nombre> que agrupa muchas estrategias .sqx minadas para un simbolo/timeframe/broker (17000+ .sqx en total en esta instalacion -- se cataloga la carpeta como unidad, no cada .sqx individual, salvo que el usuario pida curar una lista corta de estrategias 'campeonas').",
+      "custom_block": "Un bloque de AlgoWizard (Condition o Price level) exportado como XML via la skill sqx-custom-block -- una regla o senal reutilizable.",
+      "random_group": "Un Random Group (pool Condition/Value) exportado via la skill sqx-random-group.",
+      "indicator": "Un indicador custom para SQX o plataforma externa (MT5, etc.) -- carpeta o archivo de codigo/definicion."
+    },
+
+    "strategy_types": {
+      "_comment": "Eje 1: que tipo de logica de entrada/proposito tiene. Lista abierta -- agregar valores nuevos aqui cuando aparezca un tipo genuinamente distinto; no forzar algo en una categoria que no le calza.",
+      "breakout_session": "Rompimiento de rango de una sesion/ventana horaria fija (ej. ORB -- Opening Range Breakout)",
+      "trend_following": "Sigue una tendencia ya establecida (medias moviles, canales, momentum sostenido)",
+      "mean_reversion": "Apuesta a que el precio vuelve a un promedio/banda tras un extremo (RSI, bandas, desviacion)",
+      "ml_signal": "Usa una senal de machine learning como parte de la logica de entrada/salida (ej. QlibSignal/ONNX)",
+      "compliance_filter": "No es una senal de entrada en si -- es una regla de cumplimiento/restriccion (sesion horaria, noticias, trades por dia) que se AND-ea con una senal real (ej. PF_NYSessionWindow)",
+      "multi_timeframe": "Combina explicitamente mas de un timeframe/grafico como parte del criterio de entrada",
+      "other_unclassified": "No encaja claramente en ninguno de los anteriores todavia -- usar mientras se decide con el usuario, no dejar en null indefinidamente"
+    },
+
+    "status": {
+      "_comment": "Eje 2: vigencia. Se asigna con el usuario, nunca se infiere solo de la fecha de modificacion (un archivo viejo puede seguir siendo la base vigente de un proyecto activo).",
+      "vigente": "En uso activo / es la version de referencia actual de ese proyecto o estrategia",
+      "en_pruebas": "En desarrollo o validacion, todavia no se decidio si reemplaza a lo vigente",
+      "obsoleto": "Superado por una version mas nueva o descartado -- candidato a moverse a 05_ARCHIVO_DESCARTABLE (nunca se mueve/borra sin confirmar con el usuario)",
+      "pendiente_clasificar": "Recien detectado por scan_content.py, todavia sin revisar con el usuario -- estado inicial de todo item nuevo"
+    },
+
+    "_criterio_scope": "El catalogo de contenido SOLO cubre lo que SALE de ejecutar algo (correr un Custom Project, minar estrategias, generar un indicador propio) -- es decir 02_PROYECTOS_ACTIVOS, 03_RESULTADOS y user/projects. Material de 01_BIBLIOTECA_CONOCIMIENTO (plantillas, skills descargadas, indicadores/insumos de referencia externos) se deja tal como llego, sin clasificar tipo/vigencia (decision del usuario, item 32, 2026-09-16).",
+    "scan_locations": [
+      {"kind": "custom_project", "glob": "**/*.cfx", "roots": ["02_PROYECTOS_ACTIVOS", "03_RESULTADOS"]},
+      {"kind": "portfolio_project", "glob": "*", "roots": ["user/projects"], "dirs_only": true,
+        "exclude_names": ["Builder", "Optimizer", "PortfolioComposer", "PortfolioMaster", "Retester"]},
+      {"kind": "custom_block", "glob": "**/*.xml", "roots": ["02_PROYECTOS_ACTIVOS/propfirm_management/builder_level_rules"], "exclude_name_contains": ["group"]},
+      {"kind": "random_group", "glob": "**/*group*.xml", "roots": ["02_PROYECTOS_ACTIVOS/propfirm_management/builder_level_rules"]}
+    ]
+  }
+}

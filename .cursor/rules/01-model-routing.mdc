@@ -1,0 +1,19 @@
+---
+description: Routing de modelos y capas de costo (40/40/20)
+alwaysApply: false
+---
+
+# Routing de modelos
+
+Detalle: `01_BIBLIOTECA_CONOCIMIENTO/00_GOBERNANZA_SKILLS/IA_CREDITOS_Y_ROUTING.md`.
+
+| Tarea | Capa |
+|---|---|
+| Clasificar frente / brief / cambiar alcance | Cursor orquestador (modelo capaz) |
+| Explorar repo / grep / tamaños | Subagente barato |
+| Editar docs / rules / gitignore | Subagente barato o Cursor barato |
+| Authoring SQX + `doctor.py` + `validate.py` | Claude Code |
+| Análisis databank / scripts `04_` | Claude Code o barato según brief |
+| `git status` / `project-organizer` | Barato |
+| Auditoría de brief cumplido | Cursor orquestador (corto) |
+| Build / Retest SQX real | Bloqueado en GOBERNANZA |

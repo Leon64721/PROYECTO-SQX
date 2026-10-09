@@ -1893,6 +1893,18 @@ Fecha: 2026-09-21
 Decisión: utilizar copias de trabajo.
 Motivo: proteger fuentes aprobadas.
 Estado: [V] Adoptada.
+
+DECISIÓN-005 — Formalizar orquestador IA + GitHub curado
+Fecha: 2026-10-09
+Tema: Router / orquestador y versionado público
+Problema: DECISIÓN-003 dejó router y orquestador pendientes; no había AGENTS.md ni política de créditos ni .gitignore que proteja user/
+Opciones consideradas: repo privado vs público curado; trackear user/ selectivo vs hashes; reescribir historial JAR vs dejarlo
+Decisión: AGENTS.md es fuente única; un frente por sesión; créditos 40/40/20; user/ fuera de git (hashes de .cfx vigentes); historial público no se reescribe
+Motivo: confirmado por Fabian en la sesión Cursor 2026-10-09 (plan v2)
+Archivos afectados: AGENTS.md, SESSION_HANDOFF*.md, .cursor/rules/, .claude/SKILLS_REGISTRY.md, .gitignore, DECISION-LOG.md, IA_CREDITOS_Y_ROUTING.md
+Impacto: Cursor y Claude Code dejan de re-estudiar el repo; no se sube user/ ni catalog.json
+Estado: [V] Adoptada.
+
 27. FORMATO DE INCIDENTES
 Copiar
 ## INCIDENTE-XXX

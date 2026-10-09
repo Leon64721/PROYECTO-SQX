@@ -1,0 +1,5 @@
+{
+    "_comment":  "Fuente de verdad del catalogo de contenido. Ver taxonomy.json:content_catalog para el esquema (kinds/strategy_types/status). Editar via engine/classify_content.py, no a mano salvo correccion puntual.",
+    "items":  null,
+    "_note_estrategias_sueltas":  "user/projects/ contiene 12053 archivos .sqx sueltos directamente en la raiz de esa carpeta (nombres genericos tipo \u0027Strategy 1.1.119.sqx\u0027), fuera de las 10 carpetas de portfolio nombradas. Decision del usuario (item 32, 2026-09-16): NO catalogar/clasificar estas .sqx individualmente -- son output masivo de mineria, y lo que realmente importa son las pocas que sobreviven toda la cadena de robustez (OOS/MC/WFA) y terminan en un Custom Project (.cfx) de 03_RESULTADOS, que si se catalogan una por una como custom_project. No se borra nada de user/projects/."
+}

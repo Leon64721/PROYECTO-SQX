@@ -4,6 +4,13 @@ Esta carpeta contiene el **trabajo del proyecto** (notas, código custom, config
 estrategias, gestión de proyecto prop firm, resultados). Es una copia migrada el 2026-08-04 desde
 `C:\SQX_144_Full`.
 
+## Orquestación IA (fuente de verdad)
+
+Antes de clasificar o ejecutar, leer [`AGENTS.md`](AGENTS.md) y [`SESSION_HANDOFF.md`](SESSION_HANDOFF.md).
+Ahí viven los frentes oficiales (`CUSTOM_PROJECTS`, `QLIB_ONNX`, `PROPFIRM`, `GOBERNANZA`),
+el veto `MULTI_FRENTE`, el routing de modelos y la política de créditos.
+Este archivo no duplica esas reglas.
+
 ## Inicio de sesión: preguntar en qué frente se va a trabajar
 
 Este proyecto tiene **dos frentes de trabajo distintos y en curso**. Al iniciar una sesión nueva en
